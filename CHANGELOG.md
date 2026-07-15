@@ -1,9 +1,33 @@
 # Changelog
 
+## 1.5.0 — 2026-07-15
+
+### Ispravke prijavljenih bagova
+- **GPU render: naopaka slika ("u ogledalu")** — orijentacija deljene GL↔D3D teksture zavisi od drajvera grafičke kartice; novo podešavanje **Reprodukcija → "Okreni sliku po vertikali (GPU render)"** ispravlja sliku uživo, bez restarta.
+- **Seckanje / 100% CPU**:
+  - Softverski render više ne radi CPU skaliranje iznad rezolucije izvora (fullscreen 4K sa 1080p streamom = ~4× manje CPU posla po frejmu); doskaliranje radi grafička kartica.
+  - Render nit se više ne blokira na UI niti (sinhroni `Invoke` → asinhroni uz spajanje notifikacija) — kraj mikro-seckanja kad je UI zauzet.
+  - GPU put: uklonjen nepotreban `glFinish` stall po frejmu; ispravljen redosled primene dekodera (GPU mod uvek zero-copy `hwdec=auto`).
+  - **HEVC/AV1 na starim grafikama**: aplikacija sada detektuje kad hardversko dekodiranje tiho padne na procesor, prikaže upozorenje (sa savetom da se izabere H.264 verzija kanala ako postoji) i automatski uključi CPU olakšice u dekoderu.
+- **Fullscreen**: bez sistemskog okvira na svim sistemima (`WindowStyle=None` pri ulasku), prozor više nikad ne ostane "zaglavljen preko svega" (topmost samo dok je aplikacija aktivna — alt-tab i obaveštenja rade normalno), ispravljen race pri ulasku u fullscreen iz mini-plejera (crn/pogrešno dimenzionisan frejm).
+
+### Novo
+- **Plutajući PiP prozor** — dugme ⧉ u kontrolama plejera: video u malom always-on-top prozoru (premeštanje prevlačenjem, promena veličine, pauza/povratak na hover), glavni prozor se sklanja; zatvaranje vraća plejer u aplikaciju.
+- **"Sada" u listi kanala** — naziv trenutne emisije + progres traka ispod imena kanala (TV i Omiljeni), iz postojećeg EPG keša, osvežava se na 30s.
+- **O aplikaciji** blok u Podešavanja → Ažuriranja (verzija, autor, komponente) + **o0o0o0o** link ka portfoliju autora (title bar i Podešavanja).
+
+### Vizuelni redizajn
+- Inter font (pakovan, sa ćirilicom) za podrazumevani i tamni skin; jača tipografska skala (naslovi 24 SemiBold, sekcijske etikete).
+- Navigacija: zaobljene "pill" stavke sa animiranim akcentnim indikatorom (BackEase) i hover slojem.
+- Fade+slide tranzicija pri promeni taba (~150ms, preskočeno preko video površina).
+- Fokus prsten na tastaturnu navigaciju (dugmad, checkbox, combo, nav) — pristupačnost + moderan izgled.
+- Skeleton puls placeholderi za postere (Filmovi/Serije) dok se slike učitavaju.
+- Status toast na "floating surface" podlozi sa senkom; hardkodovane boje prebačene u tokene teme; naslov prozora i brand u title baru prate stvarnu verziju (umesto zastarelog "1.1").
+
 ## 1.4.1 — 2026-07-15
 
 ### Auto-update
-- Tiha provera nove verzije pri pokretanju aplikacije (pored postojeće ručne provere u Podešavanja → Ažuriranja) — ako je dostupna novija verzija, prikaže se tray obaveštenje. Podrazumevani manifest sad pokazuje na `update.json` u GitHub repou (ažurira se uz svaki Release).
+- Tiha provera nove verzije pri pokretanju aplikacije (pored postojeće ručne provere u Podešavanja → Ažuriranja) — ako je dostupna novija verzija, prikaže se tray obaveštenje. Podrazumevani manifest sad pokazuje na `update.json` u zasebnom javnom repozitorijumu [zoxknez/iptv](https://github.com/zoxknez/iptv) (dokumentacija + release-i su javni; izvorni kod ostaje privatan).
 
 ## 1.4.0 — 2026-07-15
 
