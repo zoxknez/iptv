@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.6.0 — 2026-07-16
+
+### Novo — Magnet / Torrent streaming (Preuzimanja tab)
+- Nova sekcija u Preuzimanja: nalepi magnet link ili učitaj `.torrent` fajl, izaberi video fajl (ako ih torrent sadrži više), pusti ga **dok se još preuzima** — MonoTorrent-ov `StreamProvider` daje lokalni HTTP stream sa prioritetizacijom delova oko trenutne pozicije čitanja, mpv ga konzumira kao svaki drugi URL. Titlovi i audio trake rade automatski (isti player put kao završena preuzimanja).
+- **Pauza / Nastavi** po torrentu, **Pokušaj ponovo** posle greške (npr. nema odgovora peer-ova/DHT-a), **Ukloni**.
+- Lista aktivnih torenta **preživljava restart aplikacije** (izvor + odabrani fajl se pamte; MonoTorrent hash-checkuje već preuzete delove umesto da ih skida ponovo).
+- **Otvori folder** dugme (deljeni download direktorijum za snimke/VOD/torrente).
+- P2P mreža (port/DHT/firewall) je odvojena od ostatka aplikacije — pad torrent motora nikad ne obara aplikaciju, sekcija se samo tiho onesposobi uz poruku.
+
+### Redizajn — Preuzimanja tab
+- Red snimaka/VOD preuzimanja dobio karticu (senka/okvir) i brojač stavki, dosledno sa Magnet/Torrent sekcijom iznad njega.
+- Lista torenta ograničene visine sa sopstvenim skrolom — ne gura ostatak stranice kad ima više aktivnih torenta.
+
+### Novo — TMDB radi odmah, bez podešavanja
+- Aplikacija sada dolazi sa deljenim TMDB API ključem (podešavanja opisa/postera/glumaca su UVEK aktivna) — korisnik više ne mora sam da vadi i unosi sopstveni ključ da bi video obogaćene informacije o filmovima/serijama. Polje za sopstveni ključ u Podešavanjima ostaje (opciono, za sopstveni rate-limit).
+
+### Novo — funkcionalni dodaci iz analize (Filmovi/Serije/Podešavanja)
+- **Cast fotografije** sad prikazane i u stalnom info panelu na Filmovi/Serije (ranije se skidalo sa TMDB ali se prikazivalo SAMO u posebnom modalu).
+- **Filteri po žanru + sortiranje** (naziv/godina/ocena/dodato) na Filmovi i Serije — podaci su postojali, ranije nigde izloženi kao kontrola.
+- **Zaključane kategorije** — nova sekcija u Podešavanja → Roditeljska kontrola za otključavanje bez odlaska na Televizija tab (mirror postojeće "Sakriveno" sekcije).
+- **Status izvora** (broj kanala + "pre X min") na svakoj kartici liste u Podešavanja → Liste i izvori.
+- Potvrda pre brisanja liste (izvora) — ranije brisalo bez pitanja.
+
+### Redizajn — dosledna elevacija/kartice na svim preostalim stranicama
+- **Podešavanja**: ceo desni panel (svih 7 kategorija) sada u jednoj elevated kartici umesto potpuno ravnog izgleda; ikone dodate svakoj kategoriji u levoj navigaciji; potvrda pre brisanja liste (izvora).
+- **EPG**: elevacija na toolbar/raspored/info panel; ilustrovano prazno stanje (ikona + tekst) umesto golog teksta.
+- **Pretraga**: traka za pretragu i rezultati sada u elevated karticama (ranije jedina stranica bez ijedne kartice); ilustrovano stanje "ukucaj za pretragu".
+- **Zakazano**: dobio karticu + brojač stavki (ranije bez ijednog Border/kartice).
+- **Terminal**: strukturiran log obojen po ozbiljnosti (greške crveno, upozorenja žuto, ostalo zeleno) umesto monohromatskog teksta; dodat filter/pretraga kroz log i vidljiv prekidač za automatsko skrolovanje; elevacija.
+- **Filmovi / Serije**: elevacija na sve panele (toolbar, lista, info); pravo prazno stanje (ikona + poruka) kad kategorija/pretraga ne vrati ništa; slomljena slika postera se sada vidno razlikuje od "još se učitava" (ranije je pulsirala zauvek identično).
+
 ## 1.5.0 — 2026-07-15
 
 ### Ispravke prijavljenih bagova

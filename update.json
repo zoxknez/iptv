@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
-  "url": "https://github.com/zoxknez/iptv/releases/download/v1.5.0/SuperIPTV-1.5.0-win-x64-portable.zip",
-  "notes": "Ispravke: naopaka slika kod GPU rendera (podesivo uzivo), seckanje/100% CPU (SW render cap + async blit + HEVC CPU-fallback detekcija), fullscreen (topmost/stil). Novo: plutajuci PiP prozor, \"sada\" emisija u listi kanala, o0o0o0o link. Redizajn: custom Slider, sidebar brend header/footer, prazna stanja, video kartica sa \"sada svira\" trakom. Vidi CHANGELOG.md."
+  "version": "1.6.0",
+  "url": "https://github.com/zoxknez/iptv/releases/download/v1.6.0/SuperIPTV-1.6.0-win-x64-portable.zip",
+  "notes": "Novo: magnet/torrent streaming u Preuzimanjima (pusti dok se skida, pauza/nastavak/retry, prezivljava restart), TMDB obogacivanje sad radi odmah za sve (deljeni kljuc), filteri po zanru + sortiranje na Filmovi/Serije, cast fotografije u info panelu, zakljucane kategorije i status izvora u Podesavanjima. Redizajn: dosledna elevacija/kartice na EPG, Pretraga, Zakazano, Terminal (obojen log), Filmovi, Serije i Podesavanja. Vidi CHANGELOG.md."
 }
